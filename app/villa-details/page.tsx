@@ -95,19 +95,28 @@ export default function VillaDetails() {
           <h2 className="text-4xl md:text-5xl font-serif text-[#2c1810] text-center mb-12 fade-in-up">Villa Highlights</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { icon: '🛏️', title: '3 Luxurious Bedrooms', desc: 'Each designed for comfort and privacy, with en-suite bathrooms.' },
-              { icon: '🏊', title: 'Private Pool & Spa', desc: 'Indulge in relaxation with our exclusive amenities.' },
-              { icon: '🌊', title: 'Panoramic Ocean Views', desc: 'Wake up to breathtaking vistas of the Indian Ocean.' },
-              { icon: '👥', title: 'Dedicated Staff & Services', desc: 'Personalized service to ensure an unforgettable stay.' },
-              { icon: '🌴', title: 'Lush Tropical Gardens', desc: 'Explore vibrant flora and serene pathways.' },
-              { icon: '🌅', title: 'Stunning Sunset Views', desc: 'Experience the magic of twilight from your private patio.' },
+              { iconUrl: 'https://img.icons8.com/?size=100&id=aY2sjA6XgOTA&format=png&color=4a1f0a', title: '3 Luxurious Bedrooms', desc: 'Each designed for comfort and privacy, with en-suite bathrooms.' },
+              { iconUrl: 'https://img.icons8.com/?size=100&id=117102&format=png&color=4a1f0a', title: 'Private Pool & Spa', desc: 'Indulge in relaxation with our exclusive amenities.' },
+              { iconUrl: 'https://img.icons8.com/?size=100&id=MxNPlO0FwaQc&format=png&color=4a1f0a', title: 'Panoramic Ocean Views', desc: 'Wake up to breathtaking vistas of the Indian Ocean.' },
+              { iconUrl: 'https://img.icons8.com/?size=100&id=rGyijbwI2sHU&format=png&color=4a1f0a', title: 'Dedicated Staff & Services', desc: 'Personalized service to ensure an unforgettable stay.' },
+              { iconUrl: 'https://img.icons8.com/?size=100&id=aCw2sASZmu3W&format=png&color=4a1f0a', title: 'Lush Tropical Gardens', desc: 'Explore vibrant flora and serene pathways.' },
+              { iconUrl: 'https://img.icons8.com/?size=100&id=CvFtLklKRdYD&format=png&color=4a1f0a', title: 'Stunning Sunset Views', desc: 'Experience the magic of twilight from your private patio.' },
             ].map((highlight, idx) => (
               <div 
                 key={idx} 
                 className="text-center p-6 bg-white rounded-lg border border-gray-100 scale-in hover:shadow-md transition-all duration-300 transform hover:-translate-y-1"
                 style={{ transitionDelay: `${idx * 0.05}s` }}
               >
-                <div className="text-4xl mb-4 transform transition-transform duration-300 hover:scale-110">{highlight.icon}</div>
+                <div className="flex justify-center mb-4 transform transition-transform duration-300 hover:scale-110">
+                  <Image
+                    src={highlight.iconUrl}
+                    alt={highlight.title}
+                    width={64}
+                    height={64}
+                    className="object-contain"
+                    unoptimized
+                  />
+                </div>
                 <h3 className="text-lg font-semibold text-[#2c1810] mb-2">{highlight.title}</h3>
                 <p className="text-sm text-[#2c1810]/70">{highlight.desc}</p>
               </div>

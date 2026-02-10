@@ -253,21 +253,29 @@ export default function Home() {
           <h2 className="text-4xl md:text-5xl font-serif text-[#2c1810] text-center mb-12 fade-in-up">Villa Amenities</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: '📶', title: 'High Speed Wi-Fi', desc: 'Complimentary high-speed internet throughout the villa.' },
-              { icon: '🅿️', title: 'Private Parking', desc: 'Secure and convenient on-site parking for your vehicles.' },
-              { icon: '🛁', title: 'En-suite Bathrooms', desc: 'Luxurious private bathrooms with premium toiletries.' },
-              { icon: '🏊', title: 'Infinity Pool', desc: 'Relax in our stunning infinity pool overlooking the ocean.' },
-              { icon: '🌿', title: 'Tropical Gardens', desc: 'Explore lush, landscaped gardens brimming with local flora.' },
-              { icon: '👨‍🍳', title: 'Private Chef', desc: 'Indulge in gourmet meals prepared by our skilled private chef.' },
-              { icon: '🛏️', title: 'Luxurious Beds', desc: 'Enjoy ultimate comfort on our premium king and queen-sized beds.' },
-              { icon: '🗺️', title: 'Excursion Planning', desc: 'Let us organize your adventures to nearby attractions and beyond.' },
+              { iconUrl: 'https://img.icons8.com/?size=100&id=9922&format=png&color=4a1f0a', title: 'High Speed Wi-Fi', desc: 'Complimentary high-speed internet throughout the villa.' },
+              { iconUrl: 'https://img.icons8.com/?size=100&id=dInHI27VNaWN&format=png&color=4a1f0a', title: 'Private Parking', desc: 'Secure and convenient on-site parking for your vehicles.' },
+              { iconUrl: 'https://img.icons8.com/?size=100&id=11516&format=png&color=4a1f0a', title: 'En-suite Bathrooms', desc: 'Luxurious private bathrooms with premium toiletries.' },
+              { iconUrl: 'https://img.icons8.com/?size=100&id=117102&format=png&color=4a1f0a', title: 'Infinity Pool', desc: 'Relax in our stunning infinity pool overlooking the ocean.' },
+              { iconUrl: 'https://img.icons8.com/?size=100&id=aCw2sASZmu3W&format=png&color=4a1f0a', title: 'Tropical Gardens', desc: 'Explore lush, landscaped gardens brimming with local flora.' },
+              { iconUrl: 'https://img.icons8.com/?size=100&id=PIQrqZ6SK4m6&format=png&color=4a1f0a', title: 'Private Chef', desc: 'Indulge in gourmet meals prepared by our skilled private chef.' },
+              { iconUrl: 'https://img.icons8.com/?size=100&id=aY2sjA6XgOTA&format=png&color=4a1f0a', title: 'Luxurious Beds', desc: 'Enjoy ultimate comfort on our premium king and queen-sized beds.' },
+              { iconUrl: 'https://img.icons8.com/?size=100&id=31197&format=png&color=4a1f0a', title: 'Excursion Planning', desc: 'Let us organize your adventures to nearby attractions and beyond.' },
             ].map((amenity, idx) => (
               <div 
                 key={idx} 
                 className="text-center p-6 bg-white rounded-lg border border-gray-100 scale-in hover:shadow-md transition-all duration-300 transform hover:-translate-y-1"
                 style={{ transitionDelay: `${idx * 0.05}s` }}
               >
-                <div className="text-4xl mb-4 transform transition-transform duration-300 hover:scale-110">{amenity.icon}</div>
+                <div className="flex justify-center mb-4 transform transition-transform duration-300 hover:scale-110">
+                  <Image
+                    src={amenity.iconUrl}
+                    alt={amenity.title}
+                    width={64}
+                    height={64}
+                    className="object-contain"
+                  />
+                </div>
                 <h3 className="text-lg font-semibold text-[#2c1810] mb-2">{amenity.title}</h3>
                 <p className="text-sm text-[#2c1810]/70">{amenity.desc}</p>
               </div>

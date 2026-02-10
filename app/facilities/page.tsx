@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -34,62 +35,62 @@ export default function Facilities() {
 
   const facilities = [
     {
-      icon: '📶',
+      iconUrl: 'https://img.icons8.com/?size=100&id=9922&format=png&color=4a1f0a',
       title: 'High Speed Wi-Fi',
       description: 'Complimentary high-speed internet throughout the villa.'
     },
     {
-      icon: '🅿️',
+      iconUrl: 'https://img.icons8.com/?size=100&id=dInHI27VNaWN&format=png&color=4a1f0a',
       title: 'Private Parking',
       description: 'Secure and convenient on-site parking for your vehicles.'
     },
     {
-      icon: '🛁',
+      iconUrl: 'https://img.icons8.com/?size=100&id=11516&format=png&color=4a1f0a',
       title: 'En-suite Bathrooms',
       description: 'Luxurious private bathrooms with premium toiletries.'
     },
     {
-      icon: '🏊',
+      iconUrl: 'https://img.icons8.com/?size=100&id=117102&format=png&color=4a1f0a',
       title: 'Infinity Pool',
       description: 'Relax in our stunning infinity pool overlooking the ocean.'
     },
     {
-      icon: '🌿',
+      iconUrl: 'https://img.icons8.com/?size=100&id=aCw2sASZmu3W&format=png&color=4a1f0a',
       title: 'Tropical Gardens',
       description: 'Explore lush, landscaped gardens brimming with local flora.'
     },
     {
-      icon: '👨‍🍳',
+      iconUrl: 'https://img.icons8.com/?size=100&id=PIQrqZ6SK4m6&format=png&color=4a1f0a',
       title: 'Private Chef',
       description: 'Indulge in gourmet meals prepared by our skilled private chef.'
     },
     {
-      icon: '🛏️',
+      iconUrl: 'https://img.icons8.com/?size=100&id=aY2sjA6XgOTA&format=png&color=4a1f0a',
       title: 'Luxurious Beds',
       description: 'Enjoy ultimate comfort on our premium king and queen-sized beds.'
     },
     {
-      icon: '🗺️',
+      iconUrl: 'https://img.icons8.com/?size=100&id=31197&format=png&color=4a1f0a',
       title: 'Excursion Planning',
       description: 'Let us organize your adventures to nearby attractions and beyond.'
     },
     {
-      icon: '🏖️',
+      iconUrl: 'https://img.icons8.com/?size=100&id=dZcVePXTRBAn&format=png&color=4a1f0a',
       title: 'Private Beach Access',
       description: 'Exclusive access to a secluded golden sand beach.'
     },
     {
-      icon: '🧘',
+      iconUrl: 'https://img.icons8.com/?size=100&id=y4MFRqQ7zx7p&format=png&color=4a1f0a',
       title: 'Yoga Deck',
       description: 'Ocean-facing deck perfect for morning yoga and meditation sessions.'
     },
     {
-      icon: '🍽️',
+      iconUrl: 'https://img.icons8.com/?size=100&id=dTx651hNV0QE&format=png&color=4a1f0a',
       title: 'Al Fresco Dining',
       description: 'Enjoy romantic outdoor dining under the stars.'
     },
     {
-      icon: '🌅',
+      iconUrl: 'https://img.icons8.com/?size=100&id=CvFtLklKRdYD&format=png&color=4a1f0a',
       title: 'Sunset Views',
       description: 'Spectacular sunset views from private balconies and terraces.'
     },
@@ -119,7 +120,16 @@ export default function Facilities() {
                 className="bg-white border border-gray-200 rounded-lg p-6 text-center scale-in hover:shadow-md transition-all duration-300 transform hover:-translate-y-1"
                 style={{ transitionDelay: `${idx * 0.05}s` }}
               >
-                <div className="text-5xl mb-4 transform transition-transform duration-300 hover:scale-110">{facility.icon}</div>
+                <div className="flex justify-center mb-4 transform transition-transform duration-300 hover:scale-110">
+                  <Image
+                    src={facility.iconUrl}
+                    alt={facility.title}
+                    width={80}
+                    height={80}
+                    className="object-contain"
+                    unoptimized
+                  />
+                </div>
                 <h3 className="text-xl font-serif text-[#2c1810] mb-3">{facility.title}</h3>
                 <p className="text-[#2c1810]/70 leading-relaxed">{facility.description}</p>
               </div>
