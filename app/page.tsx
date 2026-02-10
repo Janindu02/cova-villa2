@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
@@ -8,6 +8,14 @@ import Link from 'next/link';
 
 export default function Home() {
   const observerRef = useRef<IntersectionObserver | null>(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const heroImages = [
+    '/gallery/802206869.jpg',
+    '/gallery/802200016.jpg',
+    '/gallery/749346900.jpg',
+    '/gallery/749346932.jpg',
+  ];
 
   useEffect(() => {
     // Create Intersection Observer for scroll animations
@@ -36,6 +44,15 @@ export default function Home() {
     };
   }, []);
 
+  useEffect(() => {
+    // Rotate hero background images every 5 seconds
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [heroImages.length]);
+
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -43,22 +60,31 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative w-full h-[600px] overflow-hidden">
         <div className="absolute inset-0">
-          <Image
-            src="/gallery/802206869.jpg"
-            alt="Cova Villa"
-            fill
-            className="object-cover animate-fade-in"
-            priority
-            sizes="100vw"
-          />
+          {heroImages.map((image, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 transition-opacity duration-1000 ${
+                index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              <Image
+                src={image}
+                alt="Cova Villa"
+                fill
+                className="object-cover"
+                priority={index === 0}
+                sizes="100vw"
+              />
+            </div>
+          ))}
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#4A1F0A]/80 via-[#6B3410]/70 to-[#5A2810]/80"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/55"></div>
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
-          <h1 className="text-6xl md:text-7xl font-serif text-white mb-4 animate-fade-in-up">Cova Villa</h1>
-          <p className="text-xl md:text-2xl text-white/90 mb-8 animate-fade-in-up delay-200">Where Luxury Meets Serenity in Sri Lanka</p>
+          <h1 className="text-6xl md:text-7xl font-serif text-white mb-4 animate-fade-in-up drop-shadow-[0_6px_20px_rgba(0,0,0,1)] [text-shadow:_3px_3px_12px_rgba(0,0,0,1),_0_0_20px_rgba(0,0,0,0.8),_0_0_40px_rgba(0,0,0,0.5)] font-bold">Cova Villa</h1>
+          <p className="text-xl md:text-2xl text-white mb-8 animate-fade-in-up delay-200 drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)] [text-shadow:_2px_2px_10px_rgba(0,0,0,1),_0_0_15px_rgba(0,0,0,0.7)] font-semibold">Where Luxury Meets Serenity in Sri Lanka</p>
           <Link
             href="/booking"
-            className="px-8 py-3 bg-[#6B3410] text-white font-medium rounded-md hover:bg-[#5A2810] transition-all duration-300 transform hover:scale-105 animate-fade-in-up delay-400"
+            className="px-8 py-3 bg-[#6B3410] text-white font-medium rounded-md hover:bg-[#5A2810] transition-all duration-300 transform hover:scale-105 animate-fade-in-up delay-400 shadow-[0_6px_24px_rgba(107,52,16,0.8)] hover:shadow-[0_8px_32px_rgba(107,52,16,1)] [text-shadow:_1px_1px_4px_rgba(0,0,0,0.5)]"
           >
             Book Your Escape
           </Link>

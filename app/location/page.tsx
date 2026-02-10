@@ -47,16 +47,28 @@ export default function Location() {
           </p>
           
           {/* Map Card */}
-          <div className="bg-[#fef9f3] rounded-xl p-8 max-w-4xl mx-auto shadow-sm border border-gray-100 scale-in">
-            <div className="relative h-96 bg-gradient-to-br from-blue-200 to-blue-400 rounded-lg mb-6 flex items-center justify-center">
-              <div className="absolute">
-                <div className="w-8 h-8 bg-yellow-400 rounded-full border-4 border-white shadow-lg"></div>
-              </div>
+          <div className="bg-[#fef9f3] rounded-xl p-8 max-w-4xl mx-auto shadow-sm border-2 border-[#6B3410] scale-in">
+            <div className="relative h-96 rounded-lg mb-6 overflow-hidden border-2 border-[#6B3410]">
+              <iframe
+                src="https://maps.google.com/maps?q=Cova+Villa+-+Dickwella,+Cova+Villa,+New+Beliatta+road,+Wattegama,+Dikwella&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full"
+              ></iframe>
             </div>
-            <p className="text-lg font-medium text-[#2c1810] mb-4">Cova Villa, Dickwella, Sri Lanka</p>
-            <button className="px-6 py-2 border-2 border-[#fef5e7] bg-white text-[#2c1810] rounded-md hover:bg-[#fef5e7] transition-all duration-300 transform hover:scale-105">
+            <p className="text-lg font-medium text-[#2c1810] mb-4">Cova Villa - Dickwella, Cova Villa, New Beliatta road, Wattegama, Dikwella</p>
+            <a
+              href="https://www.google.com/maps/dir/?api=1&destination=Cova+Villa+-+Dickwella,+Cova+Villa,+New+Beliatta+road,+Wattegama,+Dikwella"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-6 py-2 bg-[#6B3410] text-white rounded-md hover:bg-[#5A2810] transition-all duration-300 transform hover:scale-105 font-medium"
+            >
               Get Directions
-            </button>
+            </a>
           </div>
         </div>
       </section>
@@ -133,17 +145,17 @@ export default function Location() {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                icon: '✈️',
+                iconUrl: 'https://img.icons8.com/?size=100&id=3683&format=png&color=4a1f0a',
                 title: 'Airport Transfer (Colombo)',
                 desc: 'Approx. 3 hours drive. Private car or van service available upon request. Advance booking recommended.'
               },
               {
-                icon: '🚗',
+                iconUrl: 'https://img.icons8.com/?size=100&id=pgnkAal3-Ns3&format=png&color=4a1f0a',
                 title: 'Car Rental',
                 desc: 'Various options. Self-drive vehicles can be arranged. International driving permit required.'
               },
               {
-                icon: '🛺',
+                iconUrl: 'https://img.icons8.com/?size=100&id=FPZ6lYwj3MZP&format=png&color=4a1f0a',
                 title: 'Local Tuk-Tuk Service',
                 desc: 'On-demand. Convenient for short distances to nearby towns, beaches, and attractions.'
               },
@@ -153,7 +165,16 @@ export default function Location() {
                 className="text-center p-6 bg-white rounded-lg border border-gray-100 scale-in hover:shadow-md transition-all duration-300 transform hover:-translate-y-1"
                 style={{ transitionDelay: `${idx * 0.1}s` }}
               >
-                <div className="text-5xl mb-4 transform transition-transform duration-300 hover:scale-110">{option.icon}</div>
+                <div className="flex justify-center mb-4 transform transition-transform duration-300 hover:scale-110">
+                  <Image
+                    src={option.iconUrl}
+                    alt={option.title}
+                    width={80}
+                    height={80}
+                    className="object-contain"
+                    unoptimized
+                  />
+                </div>
                 <h3 className="text-xl font-serif text-[#2c1810] mb-3">{option.title}</h3>
                 <p className="text-[#2c1810]/70 leading-relaxed">{option.desc}</p>
               </div>
