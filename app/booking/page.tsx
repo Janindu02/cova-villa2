@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -9,11 +9,37 @@ export default function Booking() {
   const [children, setChildren] = useState(0);
   const [infants, setInfants] = useState(0);
   const [nights, setNights] = useState(0);
+  const observerRef = useRef<IntersectionObserver | null>(null);
   
   const dailyRate = 250.00;
   const subtotal = dailyRate * nights;
   const taxes = subtotal * 0.15;
   const total = subtotal + taxes;
+
+  useEffect(() => {
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px',
+      }
+    );
+
+    const elements = document.querySelectorAll(
+      '.fade-in-up, .fade-in, .slide-in-left, .slide-in-right, .scale-in'
+    );
+    elements.forEach((el) => observerRef.current?.observe(el));
+
+    return () => {
+      elements.forEach((el) => observerRef.current?.unobserve(el));
+    };
+  }, []);
 
   const increment = (setter: (val: number) => void, current: number) => {
     setter(Math.max(0, current + 1));
@@ -30,8 +56,8 @@ export default function Booking() {
       {/* Hero Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-serif text-[#2c1810] mb-4">Plan Your Escape</h1>
-          <p className="text-lg text-[#2c1810]/80">
+          <h1 className="text-5xl md:text-6xl font-serif text-[#2c1810] mb-4 fade-in-up">Plan Your Escape</h1>
+          <p className="text-lg text-[#2c1810]/80 fade-in-up delay-200">
             Ready to experience luxury at Cova Villa? Fill out the form below to inquire about your stay.
           </p>
         </div>
@@ -43,7 +69,7 @@ export default function Booking() {
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Left Column - Booking Form */}
             <div>
-              <div className="bg-white border border-gray-200 rounded-lg p-8">
+              <div className="bg-white border border-gray-200 rounded-lg p-8 slide-in-left">
                 <h2 className="text-2xl font-serif text-[#2c1810] mb-6">Book Your Stay</h2>
                 
                 <form className="space-y-6">
@@ -79,7 +105,7 @@ export default function Booking() {
                         <button
                           type="button"
                           onClick={() => decrement(setAdults, adults)}
-                          className="w-10 h-10 border border-gray-300 rounded-md flex items-center justify-center hover:bg-gray-50"
+                          className="w-10 h-10 border border-gray-300 rounded-md flex items-center justify-center hover:bg-gray-50 transition-all duration-200 transform hover:scale-110 active:scale-95"
                         >
                           <span className="text-lg">−</span>
                         </button>
@@ -87,7 +113,7 @@ export default function Booking() {
                         <button
                           type="button"
                           onClick={() => increment(setAdults, adults)}
-                          className="w-10 h-10 border border-gray-300 rounded-md flex items-center justify-center hover:bg-gray-50"
+                          className="w-10 h-10 border border-gray-300 rounded-md flex items-center justify-center hover:bg-gray-50 transition-all duration-200 transform hover:scale-110 active:scale-95"
                         >
                           <span className="text-lg">+</span>
                         </button>
@@ -187,7 +213,7 @@ export default function Booking() {
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    className="w-full px-6 py-3 bg-[#6B3410] text-white font-medium rounded-md hover:bg-[#5A2810] transition-colors"
+                    className="w-full px-6 py-3 bg-[#6B3410] text-white font-medium rounded-md hover:bg-[#5A2810] transition-all duration-300 transform hover:scale-105"
                   >
                     Send Booking Inquiry
                   </button>
@@ -198,7 +224,7 @@ export default function Booking() {
             {/* Right Column - Availability, Chat, Pricing */}
             <div className="space-y-6">
               {/* Availability Calendar */}
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
+              <div className="bg-white border border-gray-200 rounded-lg p-6 scale-in hover:shadow-md transition-all duration-300">
                 <h3 className="text-xl font-serif text-[#2c1810] mb-4">Availability Calendar</h3>
                 <div className="flex items-center justify-between mb-4">
                   <button className="p-2 hover:bg-gray-50 rounded">
@@ -233,9 +259,9 @@ export default function Booking() {
               </div>
 
               {/* Prefer to Chat */}
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
+              <div className="bg-white border border-gray-200 rounded-lg p-6 scale-in delay-100 hover:shadow-md transition-all duration-300">
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-[#6B3410]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 bg-[#6B3410]/10 rounded-full flex items-center justify-center mx-auto mb-4 transform transition-transform duration-300 hover:scale-110">
                     <svg className="w-8 h-8 text-[#6B3410]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                     </svg>
@@ -244,14 +270,14 @@ export default function Booking() {
                   <p className="text-sm text-[#2c1810]/70 mb-4">
                     Connect with us instantly on WhatsApp for quick inquiries or special requests.
                   </p>
-                  <button className="w-full px-6 py-3 bg-[#6B3410] text-white font-medium rounded-md hover:bg-[#5A2810] transition-colors">
+                  <button className="w-full px-6 py-3 bg-[#6B3410] text-white font-medium rounded-md hover:bg-[#5A2810] transition-all duration-300 transform hover:scale-105">
                     Chat on WhatsApp
                   </button>
                 </div>
               </div>
 
               {/* Pricing Summary */}
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
+              <div className="bg-white border border-gray-200 rounded-lg p-6 scale-in delay-200 hover:shadow-md transition-all duration-300">
                 <h3 className="text-xl font-serif text-[#2c1810] mb-4">Pricing Summary</h3>
                 <div className="space-y-3 mb-4">
                   <div className="flex justify-between text-sm">

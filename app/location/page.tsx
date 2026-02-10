@@ -1,9 +1,39 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Location() {
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
+  useEffect(() => {
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px',
+      }
+    );
+
+    const elements = document.querySelectorAll(
+      '.fade-in-up, .fade-in, .slide-in-left, .slide-in-right, .scale-in'
+    );
+    elements.forEach((el) => observerRef.current?.observe(el));
+
+    return () => {
+      elements.forEach((el) => observerRef.current?.unobserve(el));
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -11,20 +41,20 @@ export default function Location() {
       {/* Hero Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#fef5e7]">
         <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-serif text-[#2c1810] mb-6">Our Tranquil Location</h1>
-          <p className="text-lg text-[#2c1810]/80 leading-relaxed mb-12 max-w-3xl mx-auto">
+          <h1 className="text-5xl md:text-6xl font-serif text-[#2c1810] mb-6 fade-in-up">Our Tranquil Location</h1>
+          <p className="text-lg text-[#2c1810]/80 leading-relaxed mb-12 max-w-3xl mx-auto fade-in-up delay-200">
             Nestled amidst Sri Lanka's pristine coastline, Cova Villa offers both seclusion and easy access to local wonders.
           </p>
           
           {/* Map Card */}
-          <div className="bg-[#fef9f3] rounded-xl p-8 max-w-4xl mx-auto shadow-sm border border-gray-100">
+          <div className="bg-[#fef9f3] rounded-xl p-8 max-w-4xl mx-auto shadow-sm border border-gray-100 scale-in">
             <div className="relative h-96 bg-gradient-to-br from-blue-200 to-blue-400 rounded-lg mb-6 flex items-center justify-center">
               <div className="absolute">
                 <div className="w-8 h-8 bg-yellow-400 rounded-full border-4 border-white shadow-lg"></div>
               </div>
             </div>
             <p className="text-lg font-medium text-[#2c1810] mb-4">Cova Villa, Dickwella, Sri Lanka</p>
-            <button className="px-6 py-2 border-2 border-[#fef5e7] bg-white text-[#2c1810] rounded-md hover:bg-[#fef5e7] transition-colors">
+            <button className="px-6 py-2 border-2 border-[#fef5e7] bg-white text-[#2c1810] rounded-md hover:bg-[#fef5e7] transition-all duration-300 transform hover:scale-105">
               Get Directions
             </button>
           </div>
@@ -34,8 +64,8 @@ export default function Location() {
       {/* Discover Nearby Wonders */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-serif text-[#2c1810] text-center mb-4">Discover Nearby Wonders</h2>
-          <p className="text-center text-[#2c1810]/70 mb-12">
+          <h2 className="text-4xl md:text-5xl font-serif text-[#2c1810] text-center mb-4 fade-in-up">Discover Nearby Wonders</h2>
+          <p className="text-center text-[#2c1810]/70 mb-12 fade-in-up delay-200">
             Explore the captivating beauty and cultural richness surrounding Cova Villa.
           </p>
           
@@ -57,13 +87,17 @@ export default function Location() {
                 image: '/gallery/794753564.jpg'
               },
             ].map((wonder, idx) => (
-              <div key={idx} className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100">
-                <div className="relative h-64">
+              <div 
+                key={idx} 
+                className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 scale-in hover:shadow-md transition-all duration-300 transform hover:-translate-y-1"
+                style={{ transitionDelay: `${idx * 0.1}s` }}
+              >
+                <div className="relative h-64 overflow-hidden">
                   <Image
                     src={wonder.image}
                     alt={wonder.title}
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-500 hover:scale-110"
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
                 </div>
@@ -77,7 +111,7 @@ export default function Location() {
                       </svg>
                       <span className="text-sm font-medium">Explore</span>
                     </div>
-                    <button className="px-4 py-2 border border-[#fef5e7] text-[#2c1810] rounded-md hover:bg-[#fef5e7] transition-colors text-sm">
+                    <button className="px-4 py-2 border border-[#fef5e7] text-[#2c1810] rounded-md hover:bg-[#fef5e7] transition-all duration-300 transform hover:scale-105 text-sm">
                       View Details
                     </button>
                   </div>
@@ -91,8 +125,8 @@ export default function Location() {
       {/* Getting to Cova Villa */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-serif text-[#2c1810] text-center mb-4">Getting to Cova Villa</h2>
-          <p className="text-center text-[#2c1810]/70 mb-12">
+          <h2 className="text-4xl md:text-5xl font-serif text-[#2c1810] text-center mb-4 fade-in-up">Getting to Cova Villa</h2>
+          <p className="text-center text-[#2c1810]/70 mb-12 fade-in-up delay-200">
             Seamless travel options to make your journey to our villa as relaxing as your stay.
           </p>
           
@@ -114,8 +148,12 @@ export default function Location() {
                 desc: 'On-demand. Convenient for short distances to nearby towns, beaches, and attractions.'
               },
             ].map((option, idx) => (
-              <div key={idx} className="text-center p-6 bg-white rounded-lg border border-gray-100">
-                <div className="text-5xl mb-4">{option.icon}</div>
+              <div 
+                key={idx} 
+                className="text-center p-6 bg-white rounded-lg border border-gray-100 scale-in hover:shadow-md transition-all duration-300 transform hover:-translate-y-1"
+                style={{ transitionDelay: `${idx * 0.1}s` }}
+              >
+                <div className="text-5xl mb-4 transform transition-transform duration-300 hover:scale-110">{option.icon}</div>
                 <h3 className="text-xl font-serif text-[#2c1810] mb-3">{option.title}</h3>
                 <p className="text-[#2c1810]/70 leading-relaxed">{option.desc}</p>
               </div>
@@ -127,23 +165,23 @@ export default function Location() {
       {/* Ready to Visit */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-serif text-[#2c1810] text-center mb-4">Ready to Visit?</h2>
-          <p className="text-center text-[#2c1810]/70 mb-12">
+          <h2 className="text-4xl md:text-5xl font-serif text-[#2c1810] text-center mb-4 fade-in-up">Ready to Visit?</h2>
+          <p className="text-center text-[#2c1810]/70 mb-12 fade-in-up delay-200">
             Contact us to plan your perfect escape and receive detailed directions.
           </p>
           
-          <div className="relative rounded-xl overflow-hidden">
-            <div className="relative h-96">
+          <div className="relative rounded-xl overflow-hidden scale-in">
+            <div className="relative h-96 overflow-hidden">
               <Image
                 src="/gallery/802200016.jpg"
                 alt="Ready to Visit"
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-700 hover:scale-110"
                 sizes="(max-width: 768px) 100vw, 80vw"
               />
               <div className="absolute inset-0 bg-black/20"></div>
               <div className="absolute right-8 top-1/2 transform -translate-y-1/2 z-10">
-                <button className="px-6 py-3 bg-[#6B3410] text-white rounded-md hover:bg-[#5A2810] transition-colors font-medium">
+                <button className="px-6 py-3 bg-[#6B3410] text-white rounded-md hover:bg-[#5A2810] transition-all duration-300 transform hover:scale-105 font-medium">
                   Contact Us for Directions
                 </button>
               </div>
@@ -156,4 +194,3 @@ export default function Location() {
     </div>
   );
 }
-

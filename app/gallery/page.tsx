@@ -1,12 +1,38 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 export default function Gallery() {
   const [activeFilter, setActiveFilter] = useState('All');
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
+  useEffect(() => {
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px',
+      }
+    );
+
+    const elements = document.querySelectorAll(
+      '.fade-in-up, .fade-in, .slide-in-left, .slide-in-right, .scale-in'
+    );
+    elements.forEach((el) => observerRef.current?.observe(el));
+
+    return () => {
+      elements.forEach((el) => observerRef.current?.unobserve(el));
+    };
+  }, []);
 
   const filters = ['All', 'Rooms', 'Garden', 'Living', 'Lifestyle'];
   
@@ -47,18 +73,18 @@ export default function Gallery() {
       {/* Gallery Introduction */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-serif text-[#6B3410] mb-6">Our Captivating Gallery</h1>
-          <p className="text-lg text-[#2c1810]/80 leading-relaxed mb-8 max-w-3xl mx-auto">
+          <h1 className="text-5xl md:text-6xl font-serif text-[#6B3410] mb-6 fade-in-up">Our Captivating Gallery</h1>
+          <p className="text-lg text-[#2c1810]/80 leading-relaxed mb-8 max-w-3xl mx-auto fade-in-up delay-200">
             Explore the serene beauty and intricate details of Cova Villa through our curated collection of photographs, bathed in the warmth of Sri Lankan sunsets.
           </p>
           
           {/* Filter Buttons */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
+          <div className="flex flex-wrap justify-center gap-4 mb-12 fade-in-up delay-300">
             {filters.map((filter) => (
               <button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
-                className={`px-6 py-2 rounded-md text-sm font-medium transition-colors ${
+                className={`px-6 py-2 rounded-md text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
                   activeFilter === filter
                     ? 'bg-[#6B3410] text-white'
                     : 'bg-white text-[#2c1810] border border-gray-200 hover:border-[#6B3410]'
@@ -71,16 +97,17 @@ export default function Gallery() {
 
           {/* Gallery Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {filteredImages.map((image) => (
+            {filteredImages.map((image, idx) => (
               <div
                 key={image.id}
-                className="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity relative"
+                className="aspect-square rounded-lg overflow-hidden cursor-pointer scale-in hover:opacity-90 transition-all duration-300 transform hover:scale-105 relative"
+                style={{ transitionDelay: `${idx * 0.03}s` }}
               >
                 <Image
                   src={image.src}
                   alt={image.title}
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-500 hover:scale-110"
                   sizes="(max-width: 768px) 50vw, 25vw"
                 />
               </div>
@@ -93,4 +120,3 @@ export default function Gallery() {
     </div>
   );
 }
-
