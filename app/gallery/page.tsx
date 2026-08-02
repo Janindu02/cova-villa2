@@ -34,36 +34,28 @@ export default function Gallery() {
     };
   }, []);
 
-  const filters = ['All', 'Rooms', 'Garden', 'Living', 'Lifestyle'];
-  
-  const imageFiles = [
-    '749346697.jpg',
-    '749346835.jpg',
-    '749346839.jpg',
-    '749346878.jpg',
-    '749346900.jpg',
-    '749346932.jpg',
-    '749346960.jpg',
-    '794750935.jpg',
-    '794751402.jpg',
-    '794753384.jpg',
-    '794753564.jpg',
-    '794753650.jpg',
-    '802199493.jpg',
-    '802200016.jpg',
-    '802203015.jpg',
-    '802206869.jpg',
-  ];
-  
-  const images = imageFiles.map((file, i) => ({
-    id: i + 1,
-    src: `/gallery/${file}`,
-    category: ['Rooms', 'Garden', 'Living', 'Lifestyle', 'Rooms', 'Living', 'Garden', 'Lifestyle', 'Rooms', 'Living', 'Garden', 'Lifestyle', 'Rooms', 'Living', 'Garden', 'Lifestyle'][i],
-    title: `Gallery Image ${i + 1}`
-  }));
+  const filters = ['All', 'Exterior', 'Bedroom', 'Bathroom'];
 
-  const filteredImages = activeFilter === 'All' 
-    ? images 
+  const images = [
+    { src: '/gallery/yaunder-place-hiriketiya.jpg', category: 'Exterior', title: 'Yaunder Place Hiriketiya Exterior' },
+    { src: '/gallery/yaunder-place-hiriketiya1.jpg', category: 'Exterior', title: 'Guesthouse Exterior with Balcony' },
+    { src: '/gallery/yaunder-place-hiriketiya2.jpg', category: 'Exterior', title: 'White House with Balcony & Palm Tree' },
+    { src: '/gallery/yaunder-place-hiriketiya4.jpg', category: 'Exterior', title: 'Yaunder Place Surroundings' },
+    { src: '/gallery/yaunder-place-hiriketiya-room1.jpg', category: 'Bedroom', title: 'Double Room with King Bed' },
+    { src: '/gallery/yaunder-place-hiriketiya-room2.jpg', category: 'Bedroom', title: 'Bedroom with Stone Wall' },
+    { src: '/gallery/yaunder-place-hiriketiya-room3.jpg', category: 'Bedroom', title: 'Comfortable Bedroom' },
+    { src: '/gallery/yaunder-place-hiriketiya-room4.jpg', category: 'Bedroom', title: 'Spacious Bedroom Interior' },
+    { src: '/gallery/yaunder-place-hiriketiya-room5.jpg', category: 'Bedroom', title: 'Large Bed with Ceiling' },
+    { src: '/gallery/yaunder-place-hiriketiya-room6.jpg', category: 'Bedroom', title: 'Bedroom with Balcony Access' },
+    { src: '/gallery/yaunder-place-hiriketiya-room7.jpg', category: 'Bedroom', title: 'High Floor Double Room' },
+    { src: '/gallery/yaunder-place-hiriketiya-room8.jpg', category: 'Bedroom', title: 'Cozy Room Details' },
+    { src: '/gallery/yaunder-place-hiriketiya-light.jpg', category: 'Bedroom', title: 'Room Lighting Details' },
+    { src: '/gallery/yaunder-place-hiriketiya-washroom1.jpg', category: 'Bathroom', title: 'Bathroom with Shower' },
+    { src: '/gallery/yaunder-place-hiriketiya-washroom2.jpg', category: 'Bathroom', title: 'Bathroom with Toilet & Window' },
+  ];
+
+  const filteredImages = activeFilter === 'All'
+    ? images
     : images.filter(img => img.category === activeFilter);
 
   return (
@@ -75,7 +67,7 @@ export default function Gallery() {
         <div className="max-w-6xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-serif text-[#6B3410] mb-6 fade-in-up">Our Captivating Gallery</h1>
           <p className="text-lg text-[#2c1810]/80 leading-relaxed mb-8 max-w-3xl mx-auto fade-in-up delay-200">
-            Explore the serene beauty and intricate details of Cova Villa through our curated collection of photographs, bathed in the warmth of Sri Lankan sunsets.
+            Explore the comfortable rooms, private bathrooms and peaceful surroundings of Yaunder Place Hiriketiya through our photo collection.
           </p>
           
           {/* Filter Buttons */}
@@ -96,12 +88,12 @@ export default function Gallery() {
           </div>
 
           {/* Gallery Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div key={activeFilter} className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {filteredImages.map((image, idx) => (
               <div
-                key={image.id}
-                className="aspect-square rounded-lg overflow-hidden cursor-pointer scale-in hover:opacity-90 transition-all duration-300 transform hover:scale-105 relative"
-                style={{ transitionDelay: `${idx * 0.03}s` }}
+                key={image.src}
+                className="aspect-square rounded-lg overflow-hidden cursor-pointer animate-scale-in hover:opacity-90 transition-all duration-300 transform hover:scale-105 relative"
+                style={{ animationDelay: `${idx * 0.05}s` }}
               >
                 <Image
                   src={image.src}

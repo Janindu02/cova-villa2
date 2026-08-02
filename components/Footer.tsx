@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="w-full bg-white border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          {/* Cova Villa Description */}
+          {/* Yaunder Place Description */}
           <div className="col-span-1">
             <Link href="/" className="flex items-center space-x-2 mb-4">
               <div className="w-8 h-8 bg-[#6B3410] rounded flex items-center justify-center">
@@ -13,10 +13,10 @@ export default function Footer() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                 </svg>
               </div>
-              <span className="text-xl font-serif text-[#2c1810]">Cova Villa</span>
+              <span className="text-xl font-serif text-[#2c1810]">Yaunder Place Hiriketiya</span>
             </Link>
             <p className="text-sm text-[#2c1810]/70 leading-relaxed">
-              Experience the tranquility and cultural richness of Sri Lanka at Cova Villa, a luxurious beachside villa.
+              Comfortable rooms with air-conditioning, private bathrooms and balconies in the heart of Dickwella, just a short walk from the beach.
             </p>
           </div>
 
@@ -30,8 +30,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/villa-details" className="text-sm text-[#2c1810]/70 hover:text-[#6B3410] transition-colors">
-                  Villa Details
+                <Link href="/rooms" className="text-sm text-[#2c1810]/70 hover:text-[#6B3410] transition-colors">
+                  Rooms
                 </Link>
               </li>
               <li>
@@ -88,13 +88,13 @@ export default function Footer() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-                <span className="text-sm text-[#2c1810]/70">123 Ocean View, Dickwella, Sri Lanka</span>
+                <span className="text-sm text-[#2c1810]/70">Kondeniya, Dickwella, 81200, Sri Lanka</span>
               </li>
               <li className="flex items-start space-x-2">
                 <svg className="w-4 h-4 text-[#2c1810]/70 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <span className="text-sm text-[#2c1810]/70">info@covavilla.com</span>
+                <span className="text-sm text-[#2c1810]/70">stay@yaunderplace.com</span>
               </li>
               <li className="flex items-start space-x-2">
                 <svg className="w-4 h-4 text-[#2c1810]/70 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -127,7 +127,7 @@ export default function Footer() {
         <div className="border-t border-gray-200 pt-8 mt-8">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <p className="text-sm text-[#2c1810]/70 mb-4 md:mb-0">
-              © 2026 Cova Villa. All rights reserved.
+              © 2026 Yaunder Place Hiriketiya. All rights reserved.
             </p>
             <div className="flex items-center space-x-1 text-sm text-[#2c1810]/70">
               <span>Made with</span>

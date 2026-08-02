@@ -4,7 +4,6 @@ import { useEffect, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
-import Link from 'next/link';
 
 export default function Location() {
   const observerRef = useRef<IntersectionObserver | null>(null);
@@ -43,14 +42,14 @@ export default function Location() {
         <div className="max-w-6xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-serif text-[#2c1810] mb-6 fade-in-up">Our Tranquil Location</h1>
           <p className="text-lg text-[#2c1810]/80 leading-relaxed mb-12 max-w-3xl mx-auto fade-in-up delay-200">
-            Nestled amidst Sri Lanka's pristine coastline, Cova Villa offers both seclusion and easy access to local wonders.
+            Yaunder Place Hiriketiya enjoys an excellent location in the heart of Dickwella, within minutes of beautiful beaches, restaurants and local attractions.
           </p>
           
           {/* Map Card */}
           <div className="bg-[#fef9f3] rounded-xl p-8 max-w-4xl mx-auto shadow-sm border-2 border-[#6B3410] scale-in">
             <div className="relative h-96 rounded-lg mb-6 overflow-hidden border-2 border-[#6B3410]">
               <iframe
-                src="https://maps.google.com/maps?q=Cova+Villa+-+Dickwella,+Cova+Villa,+New+Beliatta+road,+Wattegama,+Dikwella&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                src="https://maps.google.com/maps?q=Yaunder+Place,+Kondeniya,+Dickwella,+81200,+Sri+Lanka&t=&z=15&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -60,9 +59,9 @@ export default function Location() {
                 className="w-full h-full"
               ></iframe>
             </div>
-            <p className="text-lg font-medium text-[#2c1810] mb-4">Cova Villa - Dickwella, Cova Villa, New Beliatta road, Wattegama, Dikwella</p>
+            <p className="text-lg font-medium text-[#2c1810] mb-4">Yaunder Place Hiriketiya, Kondeniya, Dickwella, 81200, Sri Lanka</p>
             <a
-              href="https://www.google.com/maps/dir/?api=1&destination=Cova+Villa+-+Dickwella,+Cova+Villa,+New+Beliatta+road,+Wattegama,+Dikwella"
+              href="https://www.google.com/maps/dir/?api=1&destination=Yaunder+Place,+Kondeniya,+Dickwella,+81200,+Sri+Lanka"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block px-6 py-2 bg-[#6B3410] text-white rounded-md hover:bg-[#5A2810] transition-all duration-300 transform hover:scale-105 font-medium"
@@ -73,30 +72,51 @@ export default function Location() {
         </div>
       </section>
 
-      {/* Discover Nearby Wonders */}
+      {/* What's Nearby */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-serif text-[#2c1810] text-center mb-4 fade-in-up">Discover Nearby Wonders</h2>
+          <h2 className="text-4xl md:text-5xl font-serif text-[#2c1810] text-center mb-4 fade-in-up">What&apos;s Nearby</h2>
           <p className="text-center text-[#2c1810]/70 mb-12 fade-in-up delay-200">
-            Explore the captivating beauty and cultural richness surrounding Cova Villa.
+            Everything you need is within easy reach of Yaunder Place Hiriketiya.
           </p>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
                 title: 'Dickwella Beach',
-                desc: 'A tranquil crescent-shaped bay perfect for swimming, sunbathing, and peaceful walks along the shore.',
-                image: '/gallery/794751402.jpg'
+                desc: 'A tranquil crescent-shaped bay just 1.5 km away — perfect for swimming, sunbathing and peaceful walks along the shore.',
+                distance: '1.5 km',
+                image: '/places/dickwella-beach.jpg'
               },
               {
-                title: 'Hummanaya Blowhole',
+                title: 'Hiriketiya Beach',
+                desc: 'A popular surfing beach located just 1 km away, with a lively atmosphere, beach bars and restaurants.',
+                distance: '1 km',
+                image: '/places/hiriketiya-beach.jpg'
+              },
+              {
+                title: 'Hummanaya Blow Hole',
                 desc: "Witness the spectacular natural phenomenon of Sri Lanka's only blowhole, sending geysers high into the air.",
-                image: '/gallery/794753384.jpg'
+                distance: '6 km',
+                image: '/places/hummanaya-blowhole.jpg'
               },
               {
-                title: 'Dondra Head Lighthouse',
-                desc: 'Visit the southernmost tip of Sri Lanka and its iconic white lighthouse offering panoramic ocean views.',
-                image: '/gallery/794753564.jpg'
+                title: 'Batheegama Beach',
+                desc: 'A quiet stretch of golden sand about 2.6 km away, perfect for a peaceful swim away from the crowds.',
+                distance: '2.6 km',
+                image: '/places/betheegama-beach.jpeg'
+              },
+              {
+                title: 'Blue Beach Island',
+                desc: 'A scenic island getaway near Dondra, famous for its crystal-clear turquoise waters, snorkelling and boat trips.',
+                distance: '2.8 km',
+                image: '/places/aerial-view-of-blue-beach-island-drone-view-of-the-beaches-of-sri-lanka-photo.jpg'
+              },
+              {
+                title: 'Dondra Lighthouse',
+                desc: 'Standing at the southernmost tip of Sri Lanka, this historic lighthouse offers sweeping views over the Indian Ocean.',
+                distance: '17.3 km',
+                image: '/places/dondra-lighthouse.jpg'
               },
             ].map((wonder, idx) => (
               <div 
@@ -116,16 +136,12 @@ export default function Location() {
                 <div className="p-6">
                   <h3 className="text-xl font-serif text-[#2c1810] mb-3">{wonder.title}</h3>
                   <p className="text-[#2c1810]/70 mb-4 leading-relaxed">{wonder.desc}</p>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center text-[#6B3410]">
-                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                      </svg>
-                      <span className="text-sm font-medium">Explore</span>
-                    </div>
-                    <button className="px-4 py-2 border border-[#fef5e7] text-[#2c1810] rounded-md hover:bg-[#fef5e7] transition-all duration-300 transform hover:scale-105 text-sm">
-                      View Details
-                    </button>
+                  <div className="flex items-center text-[#6B3410]">
+                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span className="text-sm font-medium">{wonder.distance}</span>
                   </div>
                 </div>
               </div>
@@ -134,30 +150,70 @@ export default function Location() {
         </div>
       </section>
 
-      {/* Getting to Cova Villa */}
+      {/* Local Area Info */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-serif text-[#2c1810] text-center mb-4 fade-in-up">Getting to Cova Villa</h2>
+          <h2 className="text-4xl md:text-5xl font-serif text-[#2c1810] text-center mb-4 fade-in-up">Restaurants, Beaches & Transport</h2>
           <p className="text-center text-[#2c1810]/70 mb-12 fade-in-up delay-200">
-            Seamless travel options to make your journey to our villa as relaxing as your stay.
+            Explore the local area around Yaunder Place Hiriketiya.
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white border border-gray-100 rounded-lg p-8 scale-in hover:shadow-md transition-all duration-300">
+              <h3 className="text-2xl font-serif text-[#2c1810] mb-4">Restaurants & Cafes</h3>
+              <ul className="space-y-3 text-[#2c1810]/70">
+                <li className="flex justify-between"><span>Priyanka Restaurant</span><span className="text-[#6B3410] font-medium">450 m</span></li>
+                <li className="flex justify-between"><span>Garlic Cafe</span><span className="text-[#6B3410] font-medium">550 m</span></li>
+                <li className="flex justify-between"><span>Fish Tales Hiriketiya</span><span className="text-[#6B3410] font-medium">600 m</span></li>
+              </ul>
+            </div>
+            <div className="bg-white border border-gray-100 rounded-lg p-8 scale-in delay-100 hover:shadow-md transition-all duration-300">
+              <h3 className="text-2xl font-serif text-[#2c1810] mb-4">Beaches in the Neighborhood</h3>
+              <ul className="space-y-3 text-[#2c1810]/70">
+                <li className="flex justify-between"><span>Dickwella Beach</span><span className="text-[#6B3410] font-medium">1.5 km</span></li>
+                <li className="flex justify-between"><span>Hiriketiya Beach</span><span className="text-[#6B3410] font-medium">1 km</span></li>
+                <li className="flex justify-between"><span>Batheegama Beach</span><span className="text-[#6B3410] font-medium">2.6 km</span></li>
+                <li className="flex justify-between"><span>Kudawella Beach</span><span className="text-[#6B3410] font-medium">3.2 km</span></li>
+                <li className="flex justify-between"><span>Mawella Beach</span><span className="text-[#6B3410] font-medium">7 km</span></li>
+              </ul>
+            </div>
+            <div className="bg-white border border-gray-100 rounded-lg p-8 scale-in delay-200 hover:shadow-md transition-all duration-300">
+              <h3 className="text-2xl font-serif text-[#2c1810] mb-4">Transport & Airports</h3>
+              <ul className="space-y-3 text-[#2c1810]/70">
+                <li className="flex justify-between"><span>Beliatta Railway Station</span><span className="text-[#6B3410] font-medium">12 km</span></li>
+                <li className="flex justify-between"><span>Koggala Airport</span><span className="text-[#6B3410] font-medium">51 km</span></li>
+                <li className="flex justify-between"><span>Mattala Rajapaksa Intl. Airport</span><span className="text-[#6B3410] font-medium">68 km</span></li>
+                <li className="flex justify-between"><span>Weerawila Airport</span><span className="text-[#6B3410] font-medium">76 km</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Getting to Yaunder Place */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-serif text-[#2c1810] text-center mb-4 fade-in-up">Getting to Yaunder Place</h2>
+          <p className="text-center text-[#2c1810]/70 mb-12 fade-in-up delay-200">
+            Convenient travel options to make your journey to Dickwella as relaxing as your stay.
           </p>
           
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
                 iconUrl: 'https://img.icons8.com/?size=100&id=3683&format=png&color=4a1f0a',
-                title: 'Airport Transfer (Colombo)',
-                desc: 'Approx. 3 hours drive. Private car or van service available upon request. Advance booking recommended.'
+                title: 'Airport Transfer',
+                desc: 'Koggala Airport is 51 km away and Mattala Rajapaksa Intl. Airport 68 km. Private transfers can be arranged upon request.'
               },
               {
                 iconUrl: 'https://img.icons8.com/?size=100&id=pgnkAal3-Ns3&format=png&color=4a1f0a',
-                title: 'Car Rental',
-                desc: 'Various options. Self-drive vehicles can be arranged. International driving permit required.'
+                title: 'Shuttle Service',
+                desc: 'A free shuttle service is available at the property, along with bicycle parking for exploring the area.'
               },
               {
                 iconUrl: 'https://img.icons8.com/?size=100&id=FPZ6lYwj3MZP&format=png&color=4a1f0a',
-                title: 'Local Tuk-Tuk Service',
-                desc: 'On-demand. Convenient for short distances to nearby towns, beaches, and attractions.'
+                title: 'Local Tuk-Tuk',
+                desc: 'On-demand tuk-tuk service is convenient for short distances to nearby beaches, restaurants and attractions.'
               },
             ].map((option, idx) => (
               <div 
@@ -179,34 +235,6 @@ export default function Location() {
                 <p className="text-[#2c1810]/70 leading-relaxed">{option.desc}</p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Ready to Visit */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-serif text-[#2c1810] text-center mb-4 fade-in-up">Ready to Visit?</h2>
-          <p className="text-center text-[#2c1810]/70 mb-12 fade-in-up delay-200">
-            Contact us to plan your perfect escape and receive detailed directions.
-          </p>
-          
-          <div className="relative rounded-xl overflow-hidden scale-in">
-            <div className="relative h-96 overflow-hidden">
-              <Image
-                src="/gallery/802200016.jpg"
-                alt="Ready to Visit"
-                fill
-                className="object-cover transition-transform duration-700 hover:scale-110"
-                sizes="(max-width: 768px) 100vw, 80vw"
-              />
-              <div className="absolute inset-0 bg-black/20"></div>
-              <div className="absolute right-8 top-1/2 transform -translate-y-1/2 z-10">
-                <button className="px-6 py-3 bg-[#6B3410] text-white rounded-md hover:bg-[#5A2810] transition-all duration-300 transform hover:scale-105 font-medium">
-                  Contact Us for Directions
-                </button>
-              </div>
-            </div>
           </div>
         </div>
       </section>

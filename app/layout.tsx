@@ -19,8 +19,8 @@ const playfairDisplay = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Cova Villa - Luxury Beachside Villa in Sri Lanka",
-  description: "Experience the tranquility and cultural richness of Sri Lanka at Cova Villa, a luxurious beachside villa.",
+  title: "Yaunder Place Hiriketiya - Guesthouse in Dickwella, Sri Lanka",
+  description: "Comfortable rooms with air-conditioning, private bathrooms and balconies at Yaunder Place Hiriketiya in Dickwella. Free WiFi, breakfast and free private parking.",
 };
 
 export default function RootLayout({

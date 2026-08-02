@@ -9,44 +9,60 @@ export default function FAQs() {
 
   const faqs = [
     {
-      question: "What is included in the villa rental?",
-      answer: "The villa rental includes accommodation, daily housekeeping, access to all villa facilities (infinity pool, gardens, private beach access), high-speed Wi-Fi, and basic utilities. Additional services like private chef, airport transfers, and excursion planning can be arranged for an extra fee."
+      question: "Do they serve breakfast?",
+      answer: "Yes, breakfast options are available. A full English/Irish, vegetarian and Asian breakfast is served each morning in our relaxing dining area. A full English breakfast is included with your room."
     },
     {
-      question: "What is the check-in and check-out time?",
-      answer: "Check-in time is 3:00 PM and check-out time is 11:00 AM. Early check-in or late check-out may be available upon request, subject to availability and additional charges."
+      question: "Can I park there?",
+      answer: "Yes. Free private parking is available on site — no reservation is needed."
     },
     {
-      question: "Is the villa suitable for children?",
-      answer: "Yes, Cova Villa is family-friendly. We have safety measures in place, and children are welcome. The villa features spacious rooms and a safe environment. Please inform us in advance if you're traveling with children so we can make appropriate arrangements."
+      question: "What are the check-in and check-out times?",
+      answer: "Check-in is from 2:00 PM to 11:00 PM, and check-out is from 6:00 AM to 11:00 AM. Early or late check-in/check-out can be requested as a special request when booking."
     },
     {
-      question: "Do you provide airport transfers?",
-      answer: "Yes, we offer airport transfer services from Colombo International Airport. The journey takes approximately 3 hours. Private car or van service can be arranged upon request. Advance booking is recommended to ensure availability."
+      question: "Is there an airport shuttle service?",
+      answer: "An airport shuttle service is not available, but a free local shuttle service and bicycle parking are provided at the property. Koggala Airport is 51 km away and Mattala Rajapaksa International Airport is 68 km away."
     },
     {
-      question: "Is there a private chef available?",
-      answer: "Yes, we have a skilled private chef available to prepare meals tailored to your preferences. The chef can create both Sri Lankan and international cuisine using fresh local ingredients. This service is available for an additional fee and should be booked in advance."
+      question: "Is there a restaurant at the property?",
+      answer: "There is no restaurant on site, but several excellent restaurants are within easy walking distance, including Priyanka Restaurant (450 m), Garlic Cafe (550 m) and Fish Tales Hiriketiya (600 m)."
     },
     {
-      question: "What is your cancellation policy?",
-      answer: "Cancellations made 30 days or more before the check-in date will receive a full refund minus a 10% processing fee. Cancellations made 14-29 days before check-in will receive a 50% refund. Cancellations made less than 14 days before check-in are non-refundable. We recommend travel insurance for your protection."
+      question: "Is there a swimming pool?",
+      answer: "No, Yaunder Place Hiriketiya does not have a swimming pool. However, Dickwella Beach (750 m) and Hiriketiya Beach (1 km) are just a short walk away."
     },
     {
-      question: "Is Wi-Fi available?",
-      answer: "Yes, complimentary high-speed Wi-Fi is available throughout the villa, including all rooms and outdoor areas."
+      question: "Is there a spa or wellness center?",
+      answer: "There is no spa or wellness center at the property, but the quiet surroundings, lush garden and relaxing terrace make it a perfect place to unwind."
     },
     {
-      question: "Can you help organize excursions?",
-      answer: "Absolutely! Our villa manager can help organize various excursions to nearby attractions such as Dickwella Beach, Hummanaya Blowhole, Dondra Head Lighthouse, and other local wonders. We can also arrange visits to cultural sites, wildlife parks, and other destinations across Sri Lanka."
+      question: "Are there rooms with a private bathroom?",
+      answer: "Yes. All room options at Yaunder Place Hiriketiya include a private bathroom. For example, the Double Room and Double Room — High Floor both feature private bathrooms with showers and free toiletries."
     },
     {
-      question: "Is parking available?",
-      answer: "Yes, we provide secure and convenient on-site parking for your vehicles at no additional charge."
+      question: "What is the Wi-Fi policy?",
+      answer: "WiFi is available in all areas of the property and is free of charge."
     },
     {
-      question: "What payment methods do you accept?",
-      answer: "We accept major credit cards (Visa, Mastercard, American Express), bank transfers, and PayPal. A deposit is required to confirm your booking, with the balance due before or upon arrival."
+      question: "Are children welcome?",
+      answer: "Children of all ages are welcome. Children 18 and above will be charged as adults. Cribs and extra beds are not available at this property."
+    },
+    {
+      question: "Are pets allowed?",
+      answer: "Pets are not allowed at Yaunder Place Hiriketiya."
+    },
+    {
+      question: "How far is the property from the center of Dickwella and the beach?",
+      answer: "Yaunder Place Hiriketiya is 1,000 m from the center of Dickwella, and the nearest beach is only 700 m away. Dickwella Beach is a 12-minute walk from the property."
+    },
+    {
+      question: "What is the cancellation policy?",
+      answer: "Free cancellation is available before 6:00 PM on the day of check-in. Cancellation and prepayment policies vary according to accommodation type — you can check the conditions when making your selection."
+    },
+    {
+      question: "Is a credit card needed to book?",
+      answer: "No. No credit card is needed — all options are bookable without a credit card, and there is no prepayment. You pay at the property."
     },
   ];
 
@@ -63,7 +79,7 @@ export default function FAQs() {
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-serif text-[#2c1810] mb-6">Frequently Asked Questions</h1>
           <p className="text-lg text-[#2c1810]/80">
-            Find answers to common questions about your stay at Cova Villa
+            Find answers to common questions about your stay at Yaunder Place Hiriketiya
           </p>
         </div>
       </section>
@@ -109,11 +125,11 @@ export default function FAQs() {
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-serif text-[#2c1810] mb-4">Still have questions?</h2>
           <p className="text-lg text-[#2c1810]/70 mb-8">
-            Feel free to reach out to us directly. We're here to help make your stay perfect.
+            Feel free to reach out to us directly. We&apos;re here to help make your stay perfect.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="mailto:info@covavilla.com"
+              href="mailto:stay@yaunderplace.com"
               className="px-6 py-3 bg-[#6B3410] text-white font-medium rounded-md hover:bg-[#5A2810] transition-colors"
             >
               Email Us
@@ -132,4 +148,3 @@ export default function FAQs() {
     </div>
   );
 }
-
